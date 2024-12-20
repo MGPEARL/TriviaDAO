@@ -1,0 +1,57 @@
+import random
+
+def main():
+    print("Welcome to TriviaDAO!")
+    print("Test your Web3 knowledge with this simple quiz.")
+    print("You will be presented with 10 questions. Try to answer as many as you can correctly!")
+    print("-" * 50)
+
+    questions = [
+        {"question": "What is Web3 primarily associated with?", 
+         "options": ["Decentralization", "Centralized control", "Offline applications", "Cloud storage"], 
+         "answer": "Decentralization"},
+        {"question": "Which blockchain introduced smart contracts?", 
+         "options": ["Bitcoin", "Ethereum", "Solana", "Cardano"], 
+         "answer": "Ethereum"},
+        {"question": "What does DAO stand for?", 
+         "options": ["Decentralized Autonomous Organization", "Data Access Organization", 
+                     "Digital Asset Optimization", "Distributed Application Orchestration"], 
+         "answer": "Decentralized Autonomous Organization"},
+        {"question": "Which consensus mechanism is used by Bitcoin?", 
+         "options": ["Proof of Stake", "Proof of Work", "Delegated Proof of Stake", "Proof of Burn"], 
+         "answer": "Proof of Work"},
+        {"question": "What is an NFT?", 
+         "options": ["Non-Fungible Token", "New Financial Technology", "Next File Transfer", "Network File Tree"], 
+         "answer": "Non-Fungible Token"},
+        # Add 35 more questions here
+    ]
+
+    random.shuffle(questions)
+    score = 0
+
+    for i, q in enumerate(questions[:10], 1):
+        print(f"Q{i}: {q['question']}")
+        for idx, option in enumerate(q["options"], 1):
+            print(f"  {idx}. {option}")
+        answer = input("Enter the number of your choice: ").strip()
+
+        if answer.isdigit() and 1 <= int(answer) <= len(q["options"]):
+            selected = q["options"][int(answer) - 1]
+            if selected == q["answer"]:
+                print("Correct!\n")
+                score += 1
+            else:
+                print(f"Wrong! The correct answer is {q['answer']}.\n")
+        else:
+            print(f"Invalid input! The correct answer is {q['answer']}.\n")
+    
+    print(f"Quiz Over! Your final score is {score}/10.")
+    if score >= 7:
+        print("Excellent work!")
+    elif score >= 4:
+        print("Good effort! Keep learning about Web3.")
+    else:
+        print("Don't worry, keep exploring Web3 concepts.")
+
+if __name__ == "__main__":
+    main()
